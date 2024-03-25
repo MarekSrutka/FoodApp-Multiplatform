@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var cartViewModel = ShoppingCartViewModel()
+    @State private var path = NavigationPath()
+    
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path) {
             List {
                 Section("Foods") {
                     ForEach(foods) { food in
@@ -39,14 +42,25 @@ struct ContentView: View {
             .navigationTitle("Menu")
             .navigationDestination(for: Food.self) { item in
                 FoodDetailView(food: item)
+                    .environmentObject(cartViewModel)
             }
             .navigationDestination(for: Drink.self) { item in
                 DrinkDetailView(drink: item)
+                    .environmentObject(cartViewModel)
             }
             .navigationDestination(for: Dessert.self) { item in
                 DessertDetailView(dessert: item)
+                    .environmentObject(cartViewModel)
+            }
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    CartButton(count: cartViewModel.items.count) {
+                        
+                    }
+                }
             }
         }
+        .environmentObject(cartViewModel)
     }
 }
 

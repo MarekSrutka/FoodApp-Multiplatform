@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct DrinkDetailView: View {
+    @EnvironmentObject private var cartViewModel: ShoppingCartViewModel
     let drink: Drink
     var body: some View {
         List {
@@ -49,6 +50,15 @@ struct DrinkDetailView: View {
                     Button("See all locations") {
                         // TODO: push to mapView
                     }
+                }
+            }
+            
+            Section {
+                Button {
+                    cartViewModel.add(drink)
+                } label: {
+                    Label("Add to cart", systemImage: "cart")
+                        .symbolVariant(.fill)
                 }
             }
         }

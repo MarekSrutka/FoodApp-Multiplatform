@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol MenuItem {
+protocol MenuItem: Identifiable, Hashable {
     var name: String { get }
     var title: String { get }
     var description: String { get }
