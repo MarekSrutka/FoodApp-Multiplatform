@@ -1,5 +1,5 @@
 //
-//  FoodDetailView.swift
+//  DessertDetailView.swift
 //  FoodApp
 //
 //  Created by Marek Srutka on 25.03.2024.
@@ -7,43 +7,44 @@
 
 import SwiftUI
 
-struct FoodDetailView: View {
-    let food: Food
+struct DessertDetailView: View {
+    let dessert: Dessert
     var body: some View {
         List {
             Section {
-                LabeledContent("Icon", value: food.name)
-                LabeledContent("Name", value: food.title)
+                LabeledContent("Icon", value: dessert.name)
+                LabeledContent("Name", value: dessert.title)
                 LabeledContent {
-                    Text(food.price,
+                    Text(dessert.price,
                          format: .currency(code: "CZK")
                     )
                 } label: {
                     Text("Price")
                 }
+                LabeledContent("Cold?", value: dessert.isCold ? "✅" : "❌")
             }
             
             Section("Description") {
-                Text(food.description)
+                Text(dessert.description)
             }
             
-            if food.allergies?.isEmpty == false ||
-                food.ingredients?.isEmpty == false {
+            if dessert.allergies?.isEmpty == false ||
+                dessert.ingredients?.isEmpty == false {
                 
                 Section("Dietry") {
-                    if let ingredients = food.ingredients {
+                    if let ingredients = dessert.ingredients {
                         let countVw = Text("x\(ingredients.count)").font(.footnote)
                         Text("\(countVw) Ingredients")
                     }
                     
-                    if let allergies = food.allergies {
+                    if let allergies = dessert.allergies {
                         let countVw = Text("x\(allergies.count)").font(.footnote)
                         Text("\(countVw) Allergies")
                     }
                 }
             }
             
-            if let places = food.locations {
+            if let places = dessert.locations {
                 Section("Locations") {
                     Button("See all locations") {
                         // TODO: push to mapView
@@ -51,10 +52,10 @@ struct FoodDetailView: View {
                 }
             }
         }
-        .navigationTitle(food.title)
+        .navigationTitle(dessert.title)
     }
 }
 
 #Preview {
-    FoodDetailView(food: foods[0])
+    DessertDetailView(dessert: desserts[0])
 }
