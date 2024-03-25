@@ -18,4 +18,17 @@ final class ShoppingCartViewModel: ObservableObject {
     func remove(id: String) {
         items.removeAll(where: { $0.id == id })
     }
+    
+    func getGroupedCart() -> [CartItem: Int] {
+        var itemCounts = [CartItem: Int]()
+        for item in items {
+            itemCounts[item, default: 0] += 1
+        }
+        return itemCounts
+    }
+    
+    func getTotal() -> Decimal {
+        let total = items.reduce(0) { $0 + $1.price }
+        return total
+    }
 }

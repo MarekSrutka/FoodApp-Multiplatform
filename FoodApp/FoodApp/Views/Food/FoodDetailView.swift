@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct FoodDetailView: View {
+    @EnvironmentObject private var routerManager: NavigationRouter
     @EnvironmentObject private var cartViewModel: ShoppingCartViewModel
     let food: Food
     var body: some View {
@@ -55,6 +56,7 @@ struct FoodDetailView: View {
             Section {
                 Button {
                     cartViewModel.add(food)
+                    routerManager.reset()
                 } label: {
                     Label("Add to cart", systemImage: "cart")
                         .symbolVariant(.fill)
@@ -67,5 +69,6 @@ struct FoodDetailView: View {
 
 #Preview {
     FoodDetailView(food: foods[0])
+        .environmentObject(NavigationRouter())
         .environmentObject(ShoppingCartViewModel())
 }
