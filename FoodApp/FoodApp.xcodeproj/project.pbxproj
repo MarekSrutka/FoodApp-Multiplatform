@@ -25,6 +25,9 @@
 		78439A822BB21EB300E2BF64 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78439A812BB21EB300E2BF64 /* Route.swift */; };
 		78439A842BB2214500E2BF64 /* NavigationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78439A832BB2214500E2BF64 /* NavigationRouter.swift */; };
 		78439A872BB2246000E2BF64 /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78439A862BB2246000E2BF64 /* CartView.swift */; };
+		78439A8A2BB41B6200E2BF64 /* IngredientsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78439A892BB41B6200E2BF64 /* IngredientsDetailView.swift */; };
+		78439A8E2BB41C7200E2BF64 /* AllergiesDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78439A8D2BB41C7200E2BF64 /* AllergiesDetailView.swift */; };
+		78439A912BB4208500E2BF64 /* LocationMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78439A902BB4208500E2BF64 /* LocationMapView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +50,9 @@
 		78439A812BB21EB300E2BF64 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		78439A832BB2214500E2BF64 /* NavigationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationRouter.swift; sourceTree = "<group>"; };
 		78439A862BB2246000E2BF64 /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
+		78439A892BB41B6200E2BF64 /* IngredientsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsDetailView.swift; sourceTree = "<group>"; };
+		78439A8D2BB41C7200E2BF64 /* AllergiesDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllergiesDetailView.swift; sourceTree = "<group>"; };
+		78439A902BB4208500E2BF64 /* LocationMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationMapView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +120,9 @@
 		78439A6B2BB1E2AA00E2BF64 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				78439A8F2BB4207700E2BF64 /* Locations */,
+				78439A8B2BB41C4D00E2BF64 /* Allergies */,
+				78439A882BB41B4F00E2BF64 /* Ingredients */,
 				78439A852BB2245500E2BF64 /* Cart */,
 				78439A762BB1EB1900E2BF64 /* Dessert */,
 				78439A732BB1E9F000E2BF64 /* Drink */,
@@ -171,6 +180,30 @@
 				78439A862BB2246000E2BF64 /* CartView.swift */,
 			);
 			path = Cart;
+			sourceTree = "<group>";
+		};
+		78439A882BB41B4F00E2BF64 /* Ingredients */ = {
+			isa = PBXGroup;
+			children = (
+				78439A892BB41B6200E2BF64 /* IngredientsDetailView.swift */,
+			);
+			path = Ingredients;
+			sourceTree = "<group>";
+		};
+		78439A8B2BB41C4D00E2BF64 /* Allergies */ = {
+			isa = PBXGroup;
+			children = (
+				78439A8D2BB41C7200E2BF64 /* AllergiesDetailView.swift */,
+			);
+			path = Allergies;
+			sourceTree = "<group>";
+		};
+		78439A8F2BB4207700E2BF64 /* Locations */ = {
+			isa = PBXGroup;
+			children = (
+				78439A902BB4208500E2BF64 /* LocationMapView.swift */,
+			);
+			path = Locations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -243,14 +276,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78439A8E2BB41C7200E2BF64 /* AllergiesDetailView.swift in Sources */,
 				78439A592BB1D6E400E2BF64 /* MenuView.swift in Sources */,
 				78439A672BB1DDF800E2BF64 /* FoodDetailView.swift in Sources */,
 				78439A782BB1EB3000E2BF64 /* DessertDetailView.swift in Sources */,
+				78439A912BB4208500E2BF64 /* LocationMapView.swift in Sources */,
 				78439A702BB1E70300E2BF64 /* Dessert.swift in Sources */,
 				78439A842BB2214500E2BF64 /* NavigationRouter.swift in Sources */,
 				78439A692BB1E09D00E2BF64 /* MenuItemView.swift in Sources */,
 				78439A822BB21EB300E2BF64 /* Route.swift in Sources */,
 				78439A752BB1E9FD00E2BF64 /* DrinkDetailView.swift in Sources */,
+				78439A8A2BB41B6200E2BF64 /* IngredientsDetailView.swift in Sources */,
 				78439A572BB1D6E400E2BF64 /* FoodAppApp.swift in Sources */,
 				78439A722BB1E84A00E2BF64 /* MenuItem.swift in Sources */,
 				78439A6E2BB1E63400E2BF64 /* Drink.swift in Sources */,

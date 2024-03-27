@@ -15,6 +15,10 @@ final class NavigationRouter: ObservableObject {
         routes.append(screen)
     }
     
+    func goBack() {
+        _ = routes.popLast()
+    }
+    
     func reset() {
         routes = []
     }

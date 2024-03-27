@@ -35,21 +35,25 @@ struct DessertDetailView: View {
                 
                 Section("Dietry") {
                     if let ingredients = dessert.ingredients {
-                        let countVw = Text("x\(ingredients.count)").font(.footnote)
-                        Text("\(countVw) Ingredients")
+                        NavigationLink(value: Route.ingredients(items: ingredients)) {
+                            let countVw = Text("x\(ingredients.count)").font(.footnote)
+                            Text("\(countVw) Ingredients")
+                        }
                     }
                     
                     if let allergies = dessert.allergies {
-                        let countVw = Text("x\(allergies.count)").font(.footnote)
-                        Text("\(countVw) Allergies")
+                        NavigationLink(value: Route.allergies(items: allergies)) {
+                            let countVw = Text("x\(allergies.count)").font(.footnote)
+                            Text("\(countVw) Allergies")
+                        }
                     }
                 }
             }
             
-            if let places = dessert.locations {
+            if dessert.locations?.isEmpty == false {
                 Section("Locations") {
                     Button("See all locations") {
-                        // TODO: push to mapView
+                        routerManager.push(to: .map(item: dessert))
                     }
                 }
             }

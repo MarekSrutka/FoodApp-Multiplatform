@@ -35,13 +35,13 @@ let foods: [Food] = [
          ],
          locations: [
             Location(name: "Location 1",
-                     long: 48.85970, lat: 16.05400),
+                     lat: 48.85970, long: 16.05400),
             Location(name: "Location 2",
-                     long: 48.85970, lat: 16.05400),
+                     lat: 48.852243, long: 16.052229),
             Location(name: "Location 3",
-                     long: 48.85970, lat: 16.05400),
+                     lat: 48.860560, long: 16.058882),
             Location(name: "Location 4",
-                     long: 48.85970, lat: 16.05400)
+                     lat: 48.864270, long: 16.040329)
          ]),
     Food(name: "🍜",
          title: "Ramen",
@@ -55,11 +55,13 @@ let foods: [Food] = [
          allergies: nil,
          locations: [
             Location(name: "Location 1",
-                     long: 48.85970, lat: 16.05400),
+                     lat: 48.85970, long: 16.05400),
             Location(name: "Location 2",
-                     long: 48.85970, lat: 16.05400),
+                     lat: 48.852243, long: 16.052229),
             Location(name: "Location 3",
-                     long: 48.85970, lat: 16.05400)
+                     lat: 48.860560, long: 16.058882),
+            Location(name: "Location 4",
+                     lat: 48.864270, long: 16.040329)
          ]),
     Food(name: "🍔",
          title: "Burger",
@@ -73,13 +75,13 @@ let foods: [Food] = [
          allergies: nil,
          locations: [
             Location(name: "Location 1",
-                     long: 48.85970, lat: 16.05400),
+                     lat: 48.85970, long: 16.05400),
             Location(name: "Location 2",
-                     long: 48.85970, lat: 16.05400),
+                     lat: 48.852243, long: 16.052229),
             Location(name: "Location 3",
-                     long: 48.85970, lat: 16.05400),
+                     lat: 48.860560, long: 16.058882),
             Location(name: "Location 4",
-                     long: 48.85970, lat: 16.05400)
+                     lat: 48.864270, long: 16.040329)
          ]),
     Food(name: "🍕",
          title: "Pizza",
@@ -97,13 +99,13 @@ let foods: [Food] = [
          ],
          locations: [
             Location(name: "Location 1",
-                     long: 48.85970, lat: 16.05400),
+                     lat: 48.85970, long: 16.05400),
             Location(name: "Location 2",
-                     long: 48.85970, lat: 16.05400),
+                     lat: 48.852243, long: 16.052229),
             Location(name: "Location 3",
-                     long: 48.85970, lat: 16.05400),
+                     lat: 48.860560, long: 16.058882),
             Location(name: "Location 4",
-                     long: 48.85970, lat: 16.05400)
+                     lat: 48.864270, long: 16.040329)
          ]),
     Food(name: "🌭",
          title: "Hotdog",
@@ -117,13 +119,13 @@ let foods: [Food] = [
          allergies: nil,
          locations: [
             Location(name: "Location 1",
-                     long: 48.85970, lat: 16.05400),
+                     lat: 48.85970, long: 16.05400),
             Location(name: "Location 2",
-                     long: 48.85970, lat: 16.05400),
+                     lat: 48.852243, long: 16.052229),
             Location(name: "Location 3",
-                     long: 48.85970, lat: 16.05400),
+                     lat: 48.860560, long: 16.058882),
             Location(name: "Location 4",
-                     long: 48.85970, lat: 16.05400)
+                     lat: 48.864270, long: 16.040329)
          ]),
     Food(name: "🧆",
          title: "Falafel",
@@ -141,13 +143,13 @@ let foods: [Food] = [
          ],
          locations: [
             Location(name: "Location 1",
-                     long: 48.85970, lat: 16.05400),
+                     lat: 48.85970, long: 16.05400),
             Location(name: "Location 2",
-                     long: 48.85970, lat: 16.05400),
+                     lat: 48.852243, long: 16.052229),
             Location(name: "Location 3",
-                     long: 48.85970, lat: 16.05400),
+                     lat: 48.860560, long: 16.058882),
             Location(name: "Location 4",
-                     long: 48.85970, lat: 16.05400)
+                     lat: 48.864270, long: 16.040329)
          ]),
     Food(name: "🍝",
          title: "Spag Bol",
@@ -161,13 +163,13 @@ let foods: [Food] = [
          allergies: nil,
          locations: [
             Location(name: "Location 1",
-                     long: 48.85970, lat: 16.05400),
+                     lat: 48.85970, long: 16.05400),
             Location(name: "Location 2",
-                     long: 48.85970, lat: 16.05400),
+                     lat: 48.852243, long: 16.052229),
             Location(name: "Location 3",
-                     long: 48.85970, lat: 16.05400),
+                     lat: 48.860560, long: 16.058882),
             Location(name: "Location 4",
-                     long: 48.85970, lat: 16.05400)
+                     lat: 48.864270, long: 16.040329)
          ])
 ]
 
@@ -183,6 +185,6 @@ struct Allergie: Hashable {
 struct Location: Identifiable, Hashable {
     var id: String { name }
     let name: String
-    let long: Double
     let lat: Double
+    let long: Double
 }

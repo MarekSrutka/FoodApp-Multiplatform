@@ -11,6 +11,9 @@ import SwiftUI
 enum Route {
     case menuItem(item: any MenuItem)
     case cart
+    case ingredients(items: [Ingredient])
+    case allergies(items: [Allergie])
+    case map(item: any MenuItem)
 }
 
 extension Route: Hashable {
@@ -25,6 +28,12 @@ extension Route: Hashable {
             return lhsItem.id == rhsItem.id
         case (.cart, .cart):
             return true
+        case (.ingredients(let lhsItem), .ingredients(let rhsItem)):
+            return lhsItem == rhsItem
+        case (.allergies(let lhsItem), .allergies(let rhsItem)):
+            return lhsItem == rhsItem
+        case (.map(let lhsItem), .map(let rhsItem)):
+            return lhsItem.id == rhsItem.id
         default:
             return false
         }
@@ -49,6 +58,12 @@ extension Route: View {
             }
         case .cart:
             CartView()
+        case .ingredients(items: let items):
+            IngredientsDetailView(ingredients: items)
+        case .allergies(items: let items):
+            AllergiesDetailView(allergies: items)
+        case .map(item: let item):
+            LocationMapView(item: item)
         }
     }
 }
