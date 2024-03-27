@@ -45,9 +45,9 @@ struct LocationMapView: View {
             MapCompass()
         }
         .toolbar(.hidden, for: .navigationBar)
-        .toolbar(.hidden, for: .tabBar)
-        .overlay(alignment: .bottom) {
+        .safeAreaInset(edge: .bottom, content: {
             HStack {
+                Spacer()
                 Group {
                     Button("Back to Menu") {
                         routeManagar.reset()
@@ -58,9 +58,13 @@ struct LocationMapView: View {
                     }
                 }
                 .buttonStyle(.borderedProminent)
-                .controlSize(.large)
+                .controlSize(.regular)
+                .padding(.top)
+                
+                Spacer()
             }
-        }
+            .background(.thinMaterial)
+        })
     }
 }
 
