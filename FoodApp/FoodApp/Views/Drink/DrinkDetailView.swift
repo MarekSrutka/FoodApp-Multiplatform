@@ -69,6 +69,15 @@ struct DrinkDetailView: View {
             }
         }
         .navigationTitle(drink.title)
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                if let deeplink = Route.buildDeeplink(from: .menuItem(item: drink)) {
+                    ShareLink(item: deeplink) {
+                        Image(systemName: "square.and.arrow.up")
+                    }
+                }
+            }
+        }
     }
 }
 

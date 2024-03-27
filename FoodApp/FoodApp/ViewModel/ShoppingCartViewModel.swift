@@ -10,6 +10,7 @@ import Foundation
 final class ShoppingCartViewModel: ObservableObject {
     
     @Published private(set) var items: [CartItem] = []
+    @Published private(set) var promo: Promo?
     
     func add(_ item: any MenuItem) {
         items.append(CartItem(item))
@@ -29,6 +30,16 @@ final class ShoppingCartViewModel: ObservableObject {
     
     func getTotal() -> Decimal {
         let total = items.reduce(0) { $0 + $1.price }
-        return total
+        guard let discount = promo?.pct else { return total }
+        
+        return total - (discount * total)
+    }
+    
+    func set(promo: Promo) {
+        self.promo = promo
+    }
+    
+    func removePromo() {
+        self.promo = nil
     }
 }

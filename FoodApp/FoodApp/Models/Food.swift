@@ -19,7 +19,7 @@ struct Food: MenuItem {
 }
 
 let foods: [Food] = [
-    Food(name: "🌯",
+    Food(name: "🌯", // 🌯_Burrito
          title: "Burrito",
          description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
          price: 135.00,

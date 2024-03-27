@@ -21,7 +21,7 @@ struct Dessert: MenuItem {
 
 let desserts: [Dessert] = [
     
-    Dessert(name: "🍦",
+    Dessert(name: "🍦", //🍦_Ice+Cream
             title: "Ice Cream",
             description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
             isCold: true,

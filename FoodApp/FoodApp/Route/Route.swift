@@ -14,6 +14,8 @@ enum Route {
     case ingredients(items: [Ingredient])
     case allergies(items: [Allergie])
     case map(item: any MenuItem)
+    case promo(data: Promo)
+    case invalidProduct
 }
 
 extension Route: Hashable {
@@ -34,6 +36,10 @@ extension Route: Hashable {
             return lhsItem == rhsItem
         case (.map(let lhsItem), .map(let rhsItem)):
             return lhsItem.id == rhsItem.id
+        case (.promo(let lhsItem), .promo(let rhsItem)):
+            return lhsItem == rhsItem
+        case (.invalidProduct, .invalidProduct):
+            return true
         default:
             return false
         }
@@ -64,7 +70,29 @@ extension Route: View {
             AllergiesDetailView(allergies: items)
         case .map(item: let item):
             LocationMapView(item: item)
+        case .promo(let data):
+            PromoView(data: data)
+        case .invalidProduct:
+            InvalidProductView()
         }
     }
 }
 
+extension Route {
+    static func buildDeeplink(from route: Route) -> URL? {
+        switch route {
+        case .menuItem(let item):
+            let queryProductItem = item.title.replacingOccurrences(of: " ", with: "+")
+            let queryProductID = "\(item.name)_\(queryProductItem)"
+            
+            var url = URL(string: "marekFoodApp://product")!
+            let queryItems = [URLQueryItem(name: "item", value: queryProductID)]
+            
+            url.append(queryItems: queryItems)
+            
+            return url
+        default:
+            return nil
+        }
+    }
+}

@@ -68,11 +68,23 @@ struct FoodDetailView: View {
             }
         }
         .navigationTitle(food.title)
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                if let deeplink = Route.buildDeeplink(from: .menuItem(item: food)) {
+                    ShareLink(item: deeplink) {
+                        Image(systemName: "square.and.arrow.up")
+                    }
+                }
+            }
+        }
     }
 }
 
 #Preview {
-    FoodDetailView(food: foods[0])
-        .environmentObject(NavigationRouter())
-        .environmentObject(ShoppingCartViewModel())
+    NavigationStack {
+        FoodDetailView(food: foods[0])
+            .environmentObject(NavigationRouter())
+            .environmentObject(ShoppingCartViewModel())
+    }
+
 }

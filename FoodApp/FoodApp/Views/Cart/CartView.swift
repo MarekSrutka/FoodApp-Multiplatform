@@ -31,6 +31,27 @@ struct CartView: View {
                 }
             }
             
+            if let promo = cartViewModel.promo {
+                Section("Discount") {
+                    LabeledContent {
+                        if !promo.pct.isNaN {
+                            Text(promo.pct, format: .percent)
+                        } else {
+                            Text("N/A")
+                        }
+                    } label: {
+                        Text(promo.desc)
+                    }
+                    .swipeActions {
+                        Button(role: .destructive) {
+                            cartViewModel.removePromo()
+                        } label: {
+                            Image(systemName: "trash")
+                        }
+                    }
+                }
+            }
+            
             Section {
                 LabeledContent {
                     Text(cartViewModel.getTotal(), format: .currency(code: "CZK")).bold()
