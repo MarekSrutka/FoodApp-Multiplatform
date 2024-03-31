@@ -12,48 +12,22 @@ struct MenuView: View {
     @EnvironmentObject private var cartViewModel: ShoppingCartViewModel
     @EnvironmentObject private var fetcher: ProductFetcherViewModel
     
+    @Binding var layoutExperience: LayoutExperienceSettings?
+    
     var body: some View {
-        NavigationStack(path: $routerManager.routes) {
-            Group {
-                switch fetcher.action {
-                case .loading:
-                    ProgressView()
-                case .finished(let items):
-                    List {
-                        ForEach(items, id: \.name) { section in
-                            Section(section.name) {
-                                ForEach(section.items, id: \.id) { item in
-                                    let route = getRoute(for: item)
-                                    NavigationLink(value: route) {
-                                        MenuItemView(item: item)
-                                    }
-                                    
-                                }
-                            }
-                        }
-                    }
-                    .toolbar {
-                        ToolbarItem(placement: .primaryAction) {
-                            CartButton(count: cartViewModel.items.count) {
-                                routerManager.push(to: .cart)
-                            }
-                        }
-                    }
-                case .none:
-                    EmptyView()
-                }
-            }
-            .navigationTitle("Menu")
-            .navigationDestination(for: Route.self) { $0 }
+        if UIDevice.current.userInterfaceIdiom == .pad ||
+            UIDevice.current.userInterfaceIdiom == .mac {
+            MenuSplitView(layoutExperience: $layoutExperience)
+                .toolbar(.hidden, for: .tabBar)
+        } else {
+            MenuStackView()
         }
-        .task {
-            await fetcher.fetchProducts()
-        }
+     
     }
 }
 
 #Preview {
-    MenuView()
+    MenuView(layoutExperience: .constant(.twoColumn))
         .environmentObject(NavigationRouter())
         .environmentObject(ShoppingCartViewModel())
         .environmentObject(ProductFetcherViewModel())

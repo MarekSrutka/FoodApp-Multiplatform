@@ -10,7 +10,9 @@ import SwiftUI
 struct FoodDetailView: View {
     @EnvironmentObject private var routerManager: NavigationRouter
     @EnvironmentObject private var cartViewModel: ShoppingCartViewModel
+    
     let food: Food
+    
     var body: some View {
         List {
             Section {
@@ -67,6 +69,7 @@ struct FoodDetailView: View {
                 }
             }
         }
+        .listStyle(.insetGrouped)
         .navigationTitle(food.title)
         .toolbar {
             ToolbarItem(placement: .primaryAction) {

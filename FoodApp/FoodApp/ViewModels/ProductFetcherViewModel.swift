@@ -47,4 +47,33 @@ final class ProductFetcherViewModel: ObservableObject {
         return item
     }
     
+    func getItems(in category: MenuCategory?) -> [any MenuItem]? {
+        
+        guard case let .finished(data) = action,
+              let category else {
+            return []
+        }
+        
+        switch category {
+        case .foods:
+            return data.first { $0.items.allSatisfy { $0 is Food } }?.items
+        case .drinks:
+            return data.first { $0.items.allSatisfy { $0 is Drink } }?.items
+        case .desserts:
+            return data.first { $0.items.allSatisfy { $0 is Dessert } }?.items
+        }
+    }
+    
+    func getCategory(for item: any MenuItem) -> MenuCategory? {
+        switch item {
+        case is Food:
+            return .foods
+        case is Drink:
+            return .drinks
+        case is Dessert:
+            return .desserts
+        default:
+            return nil
+        }
+    }
 }

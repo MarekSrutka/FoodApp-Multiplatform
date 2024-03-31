@@ -37,15 +37,15 @@ struct RouteFinder {
             
             let promoData = Promo(desc: descQueryVal, pct: discountPct)
             
-            return .promo(data: promoData)
+            return .promo(data: promoData, hideBar: true)
         case .product:
             let queryParameters = url.queryParameters
             guard let itemQueryVal = queryParameters?["item"] as? String,
                   let product = await productFetcher.fetchProduct(by: itemQueryVal) else {
-                return .invalidProduct
+                return .invalidProduct(hideBar: true)
             }
             
-            return .menuItem(item: product)
+            return .menuItem(item: product, hideBar: true)
         default:
             return nil
         }

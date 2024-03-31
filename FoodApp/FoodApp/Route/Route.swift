@@ -9,13 +9,13 @@ import Foundation
 import SwiftUI
 
 enum Route {
-    case menuItem(item: any MenuItem)
+    case menuItem(item: any MenuItem, hideBar: Bool = true)
     case cart
     case ingredients(items: [Ingredient])
     case allergies(items: [Allergie])
-    case map(item: any MenuItem)
-    case promo(data: Promo)
-    case invalidProduct
+    case map(item: any MenuItem, hideBar: Bool = true)
+    case promo(data: Promo, hideBar: Bool = true)
+    case invalidProduct(hideBar: Bool = true)
 }
 
 extension Route: Hashable {
@@ -26,7 +26,7 @@ extension Route: Hashable {
     
     static func == (lhs: Route, rhs: Route) -> Bool {
         switch (lhs, rhs) {
-        case (.menuItem(let lhsItem), .menuItem(let rhsItem)):
+        case (.menuItem(let lhsItem, _), .menuItem(let rhsItem, _)):
             return lhsItem.id == rhsItem.id
         case (.cart, .cart):
             return true
@@ -34,10 +34,10 @@ extension Route: Hashable {
             return lhsItem == rhsItem
         case (.allergies(let lhsItem), .allergies(let rhsItem)):
             return lhsItem == rhsItem
-        case (.map(let lhsItem), .map(let rhsItem)):
+        case (.map(let lhsItem, _), .map(let rhsItem, _)):
             return lhsItem.id == rhsItem.id
-        case (.promo(let lhsItem), .promo(let rhsItem)):
-            return lhsItem == rhsItem
+        case (.promo, .promo):
+            return true
         case (.invalidProduct, .invalidProduct):
             return true
         default:
@@ -50,30 +50,35 @@ extension Route: View {
     
     var body: some View {
         switch self {
-        case .menuItem(item: let item):
-            switch item {
-                
-            case is Food:
-                FoodDetailView(food: item as! Food)
-            case is Drink:
-                DrinkDetailView(drink: item as! Drink)
-            case is Dessert:
-                DessertDetailView(dessert: item as! Dessert)
-            default:
-                EmptyView()
+        case .menuItem(item: let item, let hideBar):
+            Group {
+                switch item {
+                case is Food:
+                    FoodDetailView(food: item as! Food)
+                case is Drink:
+                    DrinkDetailView(drink: item as! Drink)
+                case is Dessert:
+                    DessertDetailView(dessert: item as! Dessert)
+                default:
+                    EmptyView()
+                }
             }
+            .toolbar(hideBar ? .hidden : .visible, for: .tabBar)
         case .cart:
             CartView()
         case .ingredients(items: let items):
             IngredientsDetailView(ingredients: items)
         case .allergies(items: let items):
             AllergiesDetailView(allergies: items)
-        case .map(item: let item):
+        case .map(item: let item, let hideBar):
             LocationMapView(item: item)
-        case .promo(let data):
+                .toolbar(hideBar ? .hidden : .visible, for: .tabBar)
+        case .promo(let data, let hideBar):
             PromoView(data: data)
-        case .invalidProduct:
+                .toolbar(hideBar ? .hidden : .visible, for: .tabBar)
+        case .invalidProduct(let hideBar):
             InvalidProductView()
+                .toolbar(hideBar ? .hidden : .visible, for: .tabBar)
         }
     }
 }
@@ -81,7 +86,7 @@ extension Route: View {
 extension Route {
     static func buildDeeplink(from route: Route) -> URL? {
         switch route {
-        case .menuItem(let item):
+        case .menuItem(let item, _):
             let queryProductItem = item.title.replacingOccurrences(of: " ", with: "+")
             let queryProductID = "\(item.name)_\(queryProductItem)"
             

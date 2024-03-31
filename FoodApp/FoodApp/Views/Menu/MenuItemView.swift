@@ -10,6 +10,7 @@ import SwiftUI
 struct MenuItemView: View {
     let item: any MenuItem
     var body: some View {
+        
         LabeledContent {
             Text(item.price,
                  format: .currency(code: "CZK")

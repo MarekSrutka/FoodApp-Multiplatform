@@ -14,17 +14,32 @@ struct FoodAppApp: App {
     @StateObject var cartViewModel = ShoppingCartViewModel()
     @StateObject var fetcher = ProductFetcherViewModel()
     
+    @AppStorage("layoutExperience") var layoutExperience: LayoutExperienceSettings?
+    
     var body: some Scene {
         WindowGroup {
-            MenuView()
-                .environmentObject(routerManager)
-                .environmentObject(cartViewModel)
-                .environmentObject(fetcher)
-                .onOpenURL { url in
-                    Task {
-                        await handleDeeplink(from: url)
-                    }
+            TabView {
+                Group {
+                    MenuView(layoutExperience: $layoutExperience)
+                        .tabItem {
+                            Label("Menu", systemImage: "menucard")
+                        }
+                        .environmentObject(routerManager)
+                        .environmentObject(cartViewModel)
+                        .environmentObject(fetcher)
+                        .onOpenURL { url in
+                            Task {
+                                await handleDeeplink(from: url)
+                            }
+                        }
+                    
+                    SettingsView(layoutExperience: $layoutExperience)
+                        .tabItem {
+                            Label("Settings", systemImage: "gear")
+                        }
                 }
+            }
+            
         }
     }
 }
