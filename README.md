@@ -1,6 +1,6 @@
 # FoodApp - iOS -> Basic
 
-![RocketSim_Recording_iPhone_15_Pro_6 1_2024-03-31_13 54 44](https://github.com/MarekSrutka/FoodApp-Multiplatform/assets/156443694/2c14bb74-0cdb-4322-a5bd-358a45417de7)
+![RocketSim_Recording_iPhone_15_Pro_6 1_2024-03-31_14 06 22](https://github.com/MarekSrutka/FoodApp-Multiplatform/assets/156443694/4e8b812c-6aee-4847-80f2-a8071ec4b4ed)
 
 # FoodApp - iOS -> Deeplinks
 
